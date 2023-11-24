@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Header from '../../Header/Header'
 import Footer from '../../Footer/Footer'
 import user from '../../../assets/icons/PhUserLight.png'
@@ -7,7 +7,7 @@ const Signup = () => {
     return (
         <>
             <Header />
-            <div className='flex flex-col gap-2 font-inter justify-center mt-20 items-center m-auto'>
+            <div className='flex flex-col gap-2 font-inter justify-center mt-20 items-center mx-auto'>
                 <img src={user} width={30} alt="" />
                 <p className='font-semibold text-sm'>Email:</p>
                 <input type="email" className="input input-bordered w-full max-w-xs" />

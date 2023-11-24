@@ -3,6 +3,8 @@ import Slide1 from '../../assets/Carousel/slide-1.jpg'
 import Slide2 from '../../assets/Carousel/slide-2.jpg'
 import Slide3 from '../../assets/Carousel/slide-3.jpg'
 
+import { Link } from 'react-router-dom'
+
 const Accordion = () => {
     return (
         <div className="carousel w-full">
@@ -13,7 +15,7 @@ const Accordion = () => {
                     <div className='flex flex-col items-center gap-3'>
                         <h1 className='text-3xl text-base-100 font-inter font-bold'>Buy & Sell Art</h1>
                         <p className='text-base-100 font-inter font-bold'>Explore unique art: Buy and sell captivating illustrations on our creative platform, celebrating individual expression</p>
-                        <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-md">About us</button>
+                        <Link to='/aboutus'><button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-md">About us</button></Link>
                     </div>
                     <a href="#slide2" className="btn btn-circle mt-9">❯</a>
                 </div>
@@ -25,7 +27,7 @@ const Accordion = () => {
                     <div className='flex flex-col items-center gap-3'>
                         <h1 className='text-3xl text-base-100 font-inter font-bold'>Elevate with Art</h1>
                         <p className='text-base-100 font-inter font-bold'>Transform space with unique art! Curated collection for buying/selling captivating pieces. Join the art revolution!</p>
-                        <button className="font-inter btn btn-xs sm:btn-sm md:btn-md lg:btn-md">Shop</button>
+                        <Link to='/shop'><button className="font-inter btn btn-xs sm:btn-sm md:btn-md lg:btn-md">Shop</button></Link>
                     </div>
                     <a href="#slide3" className="btn btn-circle mt-9">❯</a>
                 </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 import user from '../../../assets/icons/PhUserLight.png'
 import Header from '../../Header/Header'
@@ -8,7 +8,7 @@ const Register = () => {
     return (
         <>
         <Header />
-            <div className='flex flex-col gap-2 font-inter justify-center mt-20 items-center m-auto'>
+            <div className='flex flex-col gap-2 font-inter justify-center mt-20 items-center mx-auto'>
                 <img src={user} width={30} alt="" />
                 <div className='flex space-x-2'>
                     <p className='text-xs'>Client</p>
