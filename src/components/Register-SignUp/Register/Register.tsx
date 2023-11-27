@@ -7,11 +7,9 @@ import { client } from '../../../supabase/client';
 
 const Register = () => {
     const [email, setEmail] = useState("");
-    const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
-
         try {
             const { data, error } = await client.auth.signUp({
                 email: email,
@@ -46,12 +44,6 @@ const Register = () => {
                         placeholder='youremail@site.com'
                         className="input input-bordered w-full max-w-xs"
                         onChange={e => setEmail(e.target.value)}
-                    />
-                    <p className='font-semibold text-sm mb-1'>Username:</p>
-                    <input
-                        type="text"
-                        className="input input-bordered w-full max-w-xs"
-                        onChange={e => setUserName(e.target.value)}
                     />
                     <p className='font-semibold text-sm mb-1'>Password:</p>
                     <input

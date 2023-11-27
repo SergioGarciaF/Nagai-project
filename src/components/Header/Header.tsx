@@ -1,6 +1,9 @@
+
 import { Link } from 'react-router-dom'
 
 const Header = () => {
+    
+
     return (
         <>
             <header className="navbar bg-base-100">
@@ -20,6 +23,7 @@ const Header = () => {
                     </nav>
 
                     <Link to='/'><a className="cursor-default font-inter font-bold text-xl ms-10">Nagai.</a></Link>
+
                 </div>
                 <nav className="navbar-center hidden lg:flex space-x-10 list-none">
                     <Link to='/shop'><li><a className="cursor-default font-inter font-light">Shop</a></li></Link>
@@ -32,7 +36,7 @@ const Header = () => {
                     <Link to='/register'><li><a className="cursor-default font-inter font-light">Sign up</a></li></Link>
                 </nav>
             </header>
-            <hr className="border-b-2 border-b-neutral" />
+            <hr className="border-b-2 border-b-neutral" />   
         </>
     )
 }

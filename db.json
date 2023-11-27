@@ -1,0 +1,119 @@
+{
+    "paints":{
+        "1": {
+            "name": "Autumn",
+            "artist": "Jean Dupont",
+            "price": 1978.96,
+            "img": "https://drive.google.com/uc?export=view?&id=1vLM8FofeS3MSFQdPTg5W5QQUu2Ar6jcv"
+        },
+        "2": {
+            "name": "Chaos",
+            "artist": "Jean Dupont",
+            "price": 1050,
+            "img": "https://drive.google.com/uc?export=view?&id=1v9oWwPp5AQi-136nHUzJ5jvCEj27kbNX"
+        },
+        "3": {
+            "name": "Honey",
+            "artist": "Jean Dupont",
+            "price": 2500,
+            "img": "https://drive.google.com/uc?export=view?&id=1v-eUn1W8J3CM9aY_YTdLhrDXifcFD9iJ"
+        },
+        "4": {
+            "name": "Orange",
+            "artist": "Jean Dupont",
+            "price": 2500,
+            "img": "https://drive.google.com/uc?export=view?&id=1v2NbF6fn237CKV3tI_qyph5mSD6Ohhai"
+        },
+        "5": {
+            "name": "Pink",
+            "artist": "Jean Dupont",
+            "price": 3500,
+            "img": "https://drive.google.com/uc?export=view?&id=1vIvbynd2SiKffeuV5RZZaQUB1sqQbUq4"
+        },
+        "6": {
+            "name": "Sky",
+            "artist": "Jean Dupont",
+            "price": 1999,
+            "img": "https://drive.google.com/uc?export=view?&id=1vHGB1RI-Y_fR1svqtgx3LHLEhl_qn3Ix"
+        },
+        "7": {
+            "name": "Yogurt",
+            "artist": "Jean Dupont",
+            "price": 2000,
+            "img": "https://drive.google.com/uc?export=view?&id=1vEzTfCLPBBJNft1QCCeKpdB64h8Y3KQq"
+        },
+        "8": {
+            "name": "Blood",
+            "artist": "Mateo García",
+            "price": 3687,
+            "img": "https://drive.google.com/uc?export=view?&id=1vM26nkrLwgJgU3z6djR3F5pnmqo7scBy"
+        },
+        "9": {
+            "name": "Goat",
+            "artist": "Mateo García",
+            "price": 2988,
+            "img": "https://drive.google.com/uc?export=view?&id=1vSBbGsPzSQ-KBUiiStOVsYfdvmSBLtGJ"
+        },
+        "10": {
+            "name": "Idk",
+            "artist": "Mateo García",
+            "price": 2500,
+            "img": "https://drive.google.com/uc?export=view?&id=1vZLQbxLpxhXd6CPvYcYxnN1pON4YvQ7f"
+        },
+        "11": {
+            "name": "Honey",
+            "artist": "Mateo García",
+            "price": 2000,
+            "img": "https://drive.google.com/uc?export=view?&id=1vXjjK1DpCDmkDECk-3FoAcBtT9WKqRlt"
+        },
+        "12": {
+            "name": "Lady",
+            "artist": "Mateo García",
+            "price": 1500,
+            "img": "https://drive.google.com/uc?export=view?&id=1vQvgd940FNqHB3izRvV8NhVaI20MBoTV"
+        },
+        "13": {
+            "name": "Society",
+            "artist": "Mateo García",
+            "price": 2888,
+            "img": "https://drive.google.com/uc?export=view?&id=1vQD5NFDeBd_y5VtJi20zxCqxe3krYyAZ"
+        },
+        "14": {
+            "name": "Flower",
+            "artist": "Millie Harrison",
+            "price": 1899,
+            "img": "https://drive.google.com/uc?export=view?&id=1w2Q8lyFWkMnFIVBB_t4CSDDqAXEF5rhN"
+        },
+        "15": {
+            "name": "Future",
+            "artist": "Millie Harrison",
+            "price": 2500,
+            "img": "https://drive.google.com/uc?export=view?&id=1vbyWtBrRuoru-zoJk6FjXA5leHmypK0E"
+        },
+        "16": {
+            "name": "Nature",
+            "artist": "Millie Harrison",
+            "price": 4500,
+            "img": "https://drive.google.com/uc?export=view?&id=1vxILQQJ_eZaRyZQCOx1hdWjrmXqk174Z"
+        },
+        "17": {
+            "name": "Nigata",
+            "artist": "Millie Harrison",
+            "price": 5000,
+            "img": "https://drive.google.com/uc?export=view?&id=1vvihYk2rJ7a4eT2k17YqAB-89r-bxJXk"
+        },
+        "18": {
+            "name": "Pangea",
+            "artist": "Millie Harrison",
+            "price": 3500,
+            "img": "https://drive.google.com/uc?export=view?&id=1vfQR0nWqo0wB43YoaZa8Liaj4_YXlayx"
+        },
+        "19": {
+            "name": "Sea",
+            "artist": "Millie Harrison",
+            "price": 2000,
+            "img": "https://drive.google.com/uc?export=view?&id=1vet8isAPdF7xrDfjsQJFysEUSHICVYv6"
+        }
+    }
+    
+}

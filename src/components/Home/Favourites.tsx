@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom'
 const Favourites = () => {
     return (
         <>
-            <h1 className='font-inter font-bold text-2xl mt-10 mb-10'>OUR FAVOURITES</h1>
-            <div className="flex flex-wrap justify-center gap-4">
+            <h1 className='font-inter font-bold text-2xl mt-10 mb-5'>OUR FAVOURITES</h1>
+            <div className="flex flex-wrap justify-center gap-4 mb-20">
                 <div>
                     <Link to='/product-detail'><img className='shadow-xl transition-opacity duration-300 hover:opacity-70' src={orange} alt="" />
                     </Link>
