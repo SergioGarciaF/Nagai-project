@@ -31,7 +31,7 @@ const ProductDetail: React.FC = () => {
     return (
         <>
             <Header />
-            <div>
+            <div className='mb-20'>
                 <div className="hero mt-20 bg-base-100 font-inter w-1/2 m-auto">
                     <div className="hero-content flex-col lg:flex-row space-x-6">
                         {product && (

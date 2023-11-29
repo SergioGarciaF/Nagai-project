@@ -1,6 +1,8 @@
 
 import { Link } from 'react-router-dom'
 
+import cart from '../../assets/icons/PhShoppingCartLight.png'
+
 const Header = () => {
     
 
@@ -34,6 +36,7 @@ const Header = () => {
                 <nav className="navbar-end space-x-6 me-6 list-none">
                     <Link to='/login'><li><a className="cursor-default font-inter font-light">Login</a></li></Link>
                     <Link to='/register'><li><a className="cursor-default font-inter font-light">Sign up</a></li></Link>
+                    <Link to='/cart'><li><a className="cursor-default font-inter font-light"><img src={cart} alt="cart" width={30} /></a></li></Link>
                 </nav>
             </header>
             <hr className="border-b-2 border-b-neutral" />   
