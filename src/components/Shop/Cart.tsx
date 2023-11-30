@@ -27,7 +27,7 @@ const Cart = () => {
                         <div className='font-inter mt-20 text-lg m-auto'>Your cart is empty.</div>
                     </div>
                 ) : (
-                    <div className='flex justify-center'>
+                    <div className='flex justify-center space-x-6'>
                         <div className='flex flex-wrap w-1/2 gap-6 mt-20 font-inter'>
                             {cartItems.map((item: any, index) => (
                                 <div key={index} className='flex flex-col flex-basis-1/2 gap-2'>
