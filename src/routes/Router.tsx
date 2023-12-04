@@ -8,6 +8,7 @@ import Register from '../components/Register-SignUp/Register/Register'
 import ProductDetail from '../components/Shop/ProductDetail'
 import Cart from '../components/Shop/Cart'
 import Sell from '../components/Sell/Sell'
+import Contact from '../components/Contact/Contact'
 
 const Router = () => {
   return (
@@ -17,6 +18,7 @@ const Router = () => {
             <Route path='/shop' element={<Shop/>} />
             <Route path='/aboutus' element={<AboutUs/>} />
             <Route path='/sell' element={<Sell/>} />
+            <Route path='/contact' element={<Contact/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/product-detail/:productId' element={<ProductDetail/>} />
