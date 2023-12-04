@@ -1,5 +1,10 @@
 import React, { useRef } from "react";
 import emailjs from '@emailjs/browser';
+import Header from "../Header/Header";
+import { RootState } from "../../store/store";
+import { useSelector } from "react-redux";
+import Footer from "../Footer/Footer";
+import inbox from '../../assets/icons/inbox.png'
 
 interface Contact {
     email: string;
@@ -8,38 +13,42 @@ interface Contact {
 
 const Contact: React.FC = () => {
     const refForm = useRef<HTMLFormElement>(null);
+    const isAuthenticated: boolean = useSelector((state: RootState) => state.auth.isAuthenticated);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const serviceId = 'service_nnyetkm';
         const templateId = 'template_1aukhrk';
         const apiKey = 'LahAhV5UOilx9NV9t';
 
-        if (refForm.current) {
-            emailjs.sendForm(serviceId, templateId, refForm.current, apiKey)
-                .then((result) => {
-                    console.log(result.text);
-                },
-                    (error) => {
-                        console.log(error.text);
-                    });
+        try {
+            if (refForm.current) {
+                const result = await emailjs.sendForm(serviceId, templateId, refForm.current, apiKey);
+                console.log(result.text);
+            }
+        } catch (error: any) {
+            console.error(error.text);
         }
     };
 
     return (
         <>
+            <Header isAuthenticated={isAuthenticated} />
+            <h1 className="text-3xl font-inter mt-20">Contact us</h1>
+            <img className="m-auto mt-10" src={inbox} alt="inbox" width={30} />
             <form className="flex flex-col justify-center items-center" ref={refForm} onSubmit={handleSubmit}>
-                <fieldset className="flex-col">
-                    <label htmlFor="">Email</label>
-                    <input name='from_name' className="border-black"  type="email" placeholder="Ej: nagai@gmail.com" id="email" required/>
+                <fieldset className="flex-col mt-4">
+                    <label htmlFor="email">Email</label>
+                    <input type='email' name='from_name' placeholder="Ej: nagai@gmail.com" id="email" required className='input input-bordered w-full max-w-xs mt-3' />
                 </fieldset>
-                <fieldset className="flex-col">
-                    <label htmlFor="">Message</label>
-                    <textarea maxLength={500} className="border-black" name="message" placeholder="Type your message" required/>
+                <fieldset className="flex-col mt-4">
+                    <label htmlFor="message">Message</label>
+                    <textarea maxLength={500} className='input input-bordered w-full max-w-xs h-36 mt-3' name="message" placeholder="Type your message" required />
                 </fieldset>
-                <button>Enviar</button>
+                <button type="submit" className="btn btn-xs btn-outline btn-neutral mt-3">Enviar</button>
             </form>
+            <Footer />
         </>
     );
 };
