@@ -7,6 +7,7 @@ import { removeFromCart } from '../../store/Slices/sliceCart';
 
 const Cart = () => {
     const cartItems = useSelector((state: RootState) => state.addToCart.cartArray);
+    const isAuthenticated: boolean = useSelector((state: RootState) => state.auth.isAuthenticated);
 
     const calcTotal = cartItems.reduce((total, item) => total + item.price, 0);
 
@@ -16,11 +17,36 @@ const Cart = () => {
         dispatch(removeFromCart(productId));
     };
 
-    console.log("Cart Items:", cartItems);
+    const handleCheckout = async () => {
+        try {
+            console.log('Iniciando la solicitud de pago...');
+            const response = await fetch('http://localhost:4000/create-checkout-session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ cartItems }),
+            });
+    
+            console.log('Respuesta recibida:', response);
+    
+            if (!response.ok) {
+                throw new Error('Error al crear la sesión de pago');
+            }
+    
+            const session = await response.json();
+            console.log('Sesión creada:', session);
+    
+            window.location.href = session.url; // Redirige al usuario a la pasarela de pago de Stripe
+        } catch (error) {
+            console.error('Error al procesar el pago:', error);
+        }
+    };
+    
 
     return (
         <>
-            <Header />
+            <Header isAuthenticated={isAuthenticated}  />
             <div className='flex justify-center items-center mb-20'>
                 {cartItems.length === 0 ? (
                     <div>
@@ -50,7 +76,7 @@ const Cart = () => {
                             <p className='font-inter text-sm'>Postal code:</p>
                             <input type="text" placeholder="Type here" className="input input-bordered input-sm w-full max-w-xs" />
                             <p className='font-semibold text-lg mt-8'>Total: {calcTotal}€</p>
-                            <button className="btn btn-xs btn-outline btn-neutral mt-3">Checkout</button>
+                            <button className="btn btn-xs btn-outline btn-neutral mt-3" onClick={handleCheckout}>Checkout</button>
                         </div>
                     </div>
                 )}
