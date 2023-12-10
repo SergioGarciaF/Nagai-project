@@ -9,6 +9,7 @@ import ProductDetail from '../components/Shop/ProductDetail'
 import Cart from '../components/Shop/Cart'
 import Sell from '../components/Sell/Sell'
 import Contact from '../components/Contact/Contact'
+import Sucess from '../components/Shop/Sucess'
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
             <Route path='/register' element={<Register/>}/>
             <Route path='/product-detail/:productId' element={<ProductDetail/>} />
             <Route path='/cart' element={<Cart/>} />
+            <Route path='/success' element={<Sucess/>} />
         </Routes>
     </BrowserRouter>
   )
