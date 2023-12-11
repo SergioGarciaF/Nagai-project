@@ -7,7 +7,6 @@ import Login from '../components/Register-SignUp/Login/Login'
 import Register from '../components/Register-SignUp/Register/Register'
 import ProductDetail from '../components/Shop/ProductDetail'
 import Cart from '../components/Shop/Cart'
-import Sell from '../components/Sell/Sell'
 import Contact from '../components/Contact/Contact'
 import Sucess from '../components/Shop/Sucess'
 
@@ -18,7 +17,6 @@ const Router = () => {
             <Route index element={<Home/>} />
             <Route path='/shop' element={<Shop/>} />
             <Route path='/aboutus' element={<AboutUs/>} />
-            <Route path='/sell' element={<Sell/>} />
             <Route path='/contact' element={<Contact/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
