@@ -32,7 +32,7 @@ router.post('/create-checkout-session', async (req, res) => {
   return res.json(session);
 });
 
-router.get('/success', (req, res) => res.redirect('/sucess'));
+router.get('/success', (req, res) => res.redirect('/success'))
 router.get('/cancel', (req, res) => res.redirect('/'));
 
 export default router;

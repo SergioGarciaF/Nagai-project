@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-function Sucess() {
+function Success() {
   return (
     <>
     <div className="flex flex-col justify-center font-inter items-center m-auto h-screen">
@@ -12,4 +12,4 @@ function Sucess() {
   )
 }
 
-export default Sucess
+export default Success

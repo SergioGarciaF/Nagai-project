@@ -8,7 +8,7 @@ import Register from '../components/Register-SignUp/Register/Register'
 import ProductDetail from '../components/Shop/ProductDetail'
 import Cart from '../components/Shop/Cart'
 import Contact from '../components/Contact/Contact'
-import Sucess from '../components/Shop/Sucess'
+import Success from '../components/Shop/Success'
 
 const Router = () => {
   return (
@@ -22,7 +22,7 @@ const Router = () => {
             <Route path='/register' element={<Register/>}/>
             <Route path='/product-detail/:productId' element={<ProductDetail/>} />
             <Route path='/cart' element={<Cart/>} />
-            <Route path='/success' element={<Sucess/>} />
+            <Route path='/success' element={<Success/>} />
         </Routes>
     </BrowserRouter>
   )
