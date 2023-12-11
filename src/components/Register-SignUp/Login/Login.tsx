@@ -16,8 +16,10 @@ const Signup: React.FC = () => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
         dispatch(loginSuccess({ user }));
       } else {
+        localStorage.removeItem('user');
         dispatch(logoutSuccess());
       }
     });
@@ -28,7 +30,6 @@ const Signup: React.FC = () => {
     const auth = getAuth();
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      // La cookie HTTP-only debería ser establecida por el backend en una ruta segura
       dispatch(loginSuccess({ user: userCredential.user }));
     } catch (error: any) {
       console.error('Error al iniciar sesión:', error.message);
@@ -45,6 +46,15 @@ const Signup: React.FC = () => {
       console.error('Error al cerrar sesión:', error.message);
     }
   };
+
+  useEffect(() => {
+    // Verificar si existe un identificador de usuario en el almacenamiento local
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      dispatch(loginSuccess({ user }));
+    }
+  }, [dispatch]);
 
   return (
     <>
