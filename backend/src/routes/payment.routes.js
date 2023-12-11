@@ -25,8 +25,8 @@ router.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
       line_items,
       mode: 'payment',
-      success_url: 'http://localhost:3000/success',
-      cancel_url: 'http://localhost:3000',
+      success_url: 'https://nagai-project.vercel.app/success',
+      cancel_url: 'https://nagai-project.vercel.app/',
   });
 
   return res.json(session);
