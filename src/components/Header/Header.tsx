@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { logoutSuccess } from '../../store/Slices/authSlice';
-import { client } from '../../supabase/client';
 import cart from '../../assets/icons/PhShoppingCartLight.png';
+import { getAuth, signOut } from 'firebase/auth';
 
 interface HeaderProps {
   isAuthenticated: boolean;
@@ -16,8 +16,9 @@ const Header: React.FC<HeaderProps> = () => {
   const dispatch = useDispatch();
 
   const handleLogoutClick = async (): Promise<void> => {
+    const auth = getAuth();
     try {
-      await client.auth.signOut();
+      await signOut(auth);
       dispatch(logoutSuccess());
       console.log('Usuario desconectado');
     } catch (error: any) {
@@ -42,7 +43,6 @@ const Header: React.FC<HeaderProps> = () => {
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 list-none">
               <Link to='/shop'><li><a className="cursor-default font-inter font-light">Shop</a></li></Link>
               <Link to='/aboutus'><li><a className="cursor-default font-inter font-light">About us</a></li></Link>
-              <Link to='/sell'><li><a className="cursor-default font-inter font-light">Sell</a></li></Link>
               <Link to='/contact'><li><a className="cursor-default font-inter font-light">Contact</a></li> </Link>
               <Link to='/login'><li><a className="cursor-default font-inter font-light">Login</a></li></Link>
               <Link to='/register'><li><a className="cursor-default font-inter font-light">Sign up</a></li></Link>
@@ -54,7 +54,6 @@ const Header: React.FC<HeaderProps> = () => {
         <nav className="navbar-center hidden lg:flex space-x-10 list-none">
           <Link to='/shop'><li><a className="cursor-default font-inter font-light">Shop</a></li></Link>
           <Link to='/aboutus'><li><a className="cursor-default font-inter font-light">About us</a></li></Link>
-          <Link to='/sell'><li><a className="cursor-default font-inter font-light">Sell</a></li></Link>
           <Link to='/contact'><li><a className="cursor-default font-inter font-light">Contact</a></li> </Link>
         </nav>
         {isAuthenticated ? (

@@ -4,15 +4,34 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { RootState } from '../../store/store';
 import { removeFromCart } from '../../store/Slices/sliceCart';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const cartItems = useSelector((state: RootState) => state.addToCart.cartArray);
     const isAuthenticated: boolean = useSelector((state: RootState) => state.auth.isAuthenticated);
 
-    const calcTotal = cartItems.reduce((total, item) => total + item.price, 0);
-
     const dispatch = useDispatch();
 
+    const [productQuantities, setProductQuantities] = useState<{ [productId: string]: number }>(
+        cartItems.reduce((quantities, item) => {
+            quantities[item.id] = 1;
+            return quantities;
+        }, {} as { [productId: string]: number })
+    );
+
+    const handleQuantityChange = (productId: string, newQuantity: number) => {
+        setProductQuantities((prevQuantities) => ({
+            ...prevQuantities,
+            [productId]: newQuantity,
+        }));
+    };
+    
+    const calcTotal = cartItems.reduce((total, item) => {
+        // Verifica si productQuantities[item.id] está definido antes de usarlo
+        const quantity = productQuantities[item.id] || 1; // Si no está definido, utiliza 1 como valor predeterminado
+        return total + item.price * quantity;
+    }, 0);
     const handleDelete = (productId: string) => {
         dispatch(removeFromCart(productId));
     };
@@ -25,32 +44,40 @@ const Cart = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ cartItems }),
+                body: JSON.stringify({ cartItems, productQuantities }),
             });
-    
+
             console.log('Respuesta recibida:', response);
-    
+
             if (!response.ok) {
                 throw new Error('Error al crear la sesión de pago');
             }
-    
+
             const session = await response.json();
             console.log('Sesión creada:', session);
-    
+
             window.location.href = session.url; // Redirige al usuario a la pasarela de pago de Stripe
         } catch (error) {
             console.error('Error al procesar el pago:', error);
         }
     };
-    
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/login');
+        }
+    }, [isAuthenticated]);
+
 
     return (
         <>
-            <Header isAuthenticated={isAuthenticated}  />
+            <Header isAuthenticated={isAuthenticated} />
             <div className='flex justify-center items-center mb-20'>
                 {cartItems.length === 0 ? (
                     <div>
-                        <div className='font-inter mt-20 text-lg m-auto'>Your cart is empty.</div>
+                        <div className='font-inter mt-20 text-lg m-auto min-h-screen'>Your cart is empty.</div>
                     </div>
                 ) : (
                     <div className='flex justify-center space-x-6'>
@@ -61,6 +88,14 @@ const Cart = () => {
                                     <div className="flex flex-col gap-2">
                                         <h3 className='font-inter font-semibold text-sm'>{item.name}</h3>
                                         <p className='font-inter font-regular text-sm'>{item.price}€</p>
+                                        <input
+                                            type="number"
+                                            placeholder="Quantity"
+                                            className="input input-bordered input-sm w-full max-w-xs"
+                                            min={1}
+                                            value={productQuantities[item.id]}
+                                            onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value, 10))}
+                                        />
                                         <button className="btn btn-xs btn-outline btn-neutral" onClick={() => handleDelete(item.id)}>Delete</button>
                                     </div>
                                 </div>

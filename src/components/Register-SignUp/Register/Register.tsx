@@ -1,40 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { client } from '../../../supabase/client';
 import { loginSuccess, logoutSuccess } from '../../../store/Slices/authSlice';
 import { RootState } from '../../../store/store';
 import Header from '../../Header/Header';
 import Footer from '../../Footer/Footer';
-import user from '../../../assets/icons/PhUserLight.png';
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
+import { Toaster, toast } from 'sonner';
 
 const Register = () => {
   const dispatch = useDispatch();
   const isAuthenticated: boolean = useSelector((state: RootState) => state.auth.isAuthenticated);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+ 
+
+  const validatePassword = (password: string) => {
+    if (password.length < 4) {
+      return false;
+    }
+    return true;
+  };
+
+  const auth = getAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const { data, error }: { data: any; error: any } = await client.auth.signUp({
-        email: email,
-        password: password,
-      });
-
-      if (error) {
-        console.error('Error al registrar:', error);
-      } else {
-        console.log('Registro exitoso:', data);
-        dispatch(loginSuccess({ user: data.user }));
-      }
-    } catch (error) {
-      console.error('Error inesperado:', error);
+    if (!validatePassword(password)) {
+      toast.error('The password must be at least 4 characters long.');
+      return;
     }
+    if (password !== confirmPassword) {
+      toast.error('The passwords do not match. Try again.');
+      return;
+    }
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log('Registro exitoso:', userCredential);
+      dispatch(loginSuccess({ user: userCredential.user }));
+    } catch (error: any) {
+      console.error('Error al registrar:', error);
+    }
+
   };
 
   const handleLogoutClick = async (): Promise<void> => {
     try {
-      await client.auth.signOut();
+      await signOut(auth);
       dispatch(logoutSuccess());
       console.log('Usuario desconectado');
     } catch (error: any) {
@@ -43,65 +55,87 @@ const Register = () => {
   };
 
   useEffect(() => {
-    const fetchSession = async (): Promise<void> => {
-      try {
-        const { data: { session } } = await client.auth.getSession();
-        dispatch(session ? loginSuccess({ user: session.user }) : logoutSuccess());
-      } catch (error: any) {
-        console.error('Error al obtener la sesión:', error.message);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(loginSuccess({ user }));
+      } else {
+        dispatch(logoutSuccess());
       }
-    };
+    });
+  }, [dispatch, auth]);
 
-    const onAuthStateChange = (_event: any, session: any): void => {
-      dispatch(session ? loginSuccess({ user: session.user }) : logoutSuccess());
-    };
-
-    fetchSession();
-
-    const { data: { subscription } } = client.auth.onAuthStateChange(onAuthStateChange);
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, [dispatch]);
 
   return (
     <>
       <Header isAuthenticated={isAuthenticated} />
-      <div className='flex flex-col gap-2 font-inter justify-center mt-20 items-center mx-auto'>
-        {isAuthenticated ? (
-          <>
-            <p className='font-inter'>¡Bienvenido! Has iniciado sesión.</p>
-            <p className='font-inter'>Confirma tu inicio de sesión en tu correo eléctronico</p>
-            <button onClick={handleLogoutClick} className='font-inter'>Cerrar sesión</button>
-          </>
-        ) : (
-          <>
-            <img src={user} width={30} alt="" />
-            <div className='flex space-x-2'>
-              <p className='text-xs'>Client</p>
-              <input type="checkbox" className="toggle" checked />
-              <p className='text-xs'>Artist</p>
-            </div>
-            <form onSubmit={handleSubmit}>
-              <p className='font-semibold text-sm mb-1'>Email:</p>
-              <input
-                type="email"
-                name='email'
-                placeholder='youremail@site.com'
-                className="input input-bordered w-full max-w-xs"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <p className='font-semibold text-sm mb-1'>Password:</p>
-              <input
-                type="password"
-                className="input input-bordered w-full max-w-xs"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <button className="btn btn-xs btn-outline btn-neutral mt-3">Register</button>
-            </form>
-          </>
-        )}
+      <div className='flex flex-col items-center justify-center h-screen bg-gray-100'>
+        <div className='w-full max-w-xs p-8 bg-white rounded-lg shadow-md'>
+          {isAuthenticated ? (
+            <>
+              <h1 className='text-2xl font-inter font-semibold mb-4'>Welcome to our family!</h1>
+              <button
+                className='btn btn-primary w-full mt-4'
+                onClick={handleLogoutClick}
+              >
+                Log Out
+              </button>
+            </>
+          ) : (
+            <>
+              <h1 className='text-2xl font-inter font-semibold mb-4'>Sign up</h1>
+              <form onSubmit={handleSubmit} className='space-y-4'>
+                <div>
+                  <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='email'>
+                    Email
+                  </label>
+                  <input
+                    id='email'
+                    type='email'
+                    name='email'
+                    placeholder='youremail@site.com'
+                    className='input input-bordered w-full'
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='password'>
+                    Password
+                  </label>
+                  <input
+                    id='password'
+                    type='password'
+                    className='input input-bordered w-full'
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      validatePassword(e.target.value);
+                    }}
+                  />
+                </div>
+                <div>
+                  <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='confirmPassword'>
+                    Repeat Password
+                  </label>
+                  <input
+                    id='confirmPassword'
+                    type='password'
+                    className='input input-bordered w-full'
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                </div>
+                <button className='btn btn-primary w-full'>
+                  Sign up
+                </button>
+              </form>
+            </>
+          )}
+        </div>
+        <Toaster toastOptions={{
+          style: {
+            background: 'black',
+            color: "white"
+          },
+          className: 'my-toast',
+        }} />
       </div>
       <Footer />
     </>

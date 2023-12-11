@@ -5,6 +5,7 @@ import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 import Footer from "../Footer/Footer";
 import inbox from '../../assets/icons/inbox.png'
+import { Toaster, toast } from 'sonner'
 
 interface Contact {
     email: string;
@@ -26,9 +27,15 @@ const Contact: React.FC = () => {
             if (refForm.current) {
                 const result = await emailjs.sendForm(serviceId, templateId, refForm.current, apiKey);
                 console.log(result.text);
+                toast.success('Email sent successfully', {
+                    duration: 2000,
+                })
             }
         } catch (error: any) {
             console.error(error.text);
+            toast.error('Email not sent', {
+                duration: 2000,
+            })
         }
     };
 
@@ -47,6 +54,13 @@ const Contact: React.FC = () => {
                     <textarea maxLength={500} className='input input-bordered w-full max-w-xs h-36 mt-3' name="message" placeholder="Type your message" required />
                 </fieldset>
                 <button type="submit" className="btn btn-xs btn-outline btn-neutral mt-3">Enviar</button>
+                <Toaster toastOptions={{
+                    style: {
+                        background: 'black',
+                        color: "white"
+                    },
+                    className: 'my-toast',
+                }} />
             </form>
             <Footer />
         </>

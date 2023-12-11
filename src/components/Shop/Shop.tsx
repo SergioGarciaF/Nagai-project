@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { DataSnapshot, get, getDatabase, ref } from "firebase/database";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import firebaseApp from '../../firebase/app';
+import {firebaseApp} from '../../firebase/app';
 import { addItemToCart } from "../../store/Slices/sliceCart";
 import { RootState } from "../../store/store";
+import { Toaster, toast } from "sonner";
 
 interface Product {
     name: string;
@@ -46,7 +47,9 @@ const Shop: React.FC = () => {
 
     const addToCart = (product: Product) => {
         dispatch(addItemToCart(product));
-        alert('Item added');
+        toast.success('Product added to cart', {
+            duration: 2000,
+        })
         console.log("Adding to cart:", { id: product.id });
     };
 
@@ -75,6 +78,13 @@ const Shop: React.FC = () => {
                         </div>
                     ))}
                 </div>
+                <Toaster toastOptions={{
+                    style: {
+                        background: 'black',
+                        color: "white"
+                    },
+                    className: 'my-toast',
+                }} />
             </div>
             <Footer />
         </>

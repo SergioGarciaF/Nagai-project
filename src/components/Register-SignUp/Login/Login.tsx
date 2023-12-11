@@ -4,8 +4,7 @@ import { loginSuccess, logoutSuccess } from '../../../store/Slices/authSlice'
 import { RootState } from '../../../store/store';
 import Header from '../../Header/Header';
 import Footer from '../../Footer/Footer';
-import user from '../../../assets/icons/PhUserLight.png';
-import { client } from '../../../supabase/client';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 
 const Signup: React.FC = () => {
   const dispatch = useDispatch();
@@ -14,53 +13,32 @@ const Signup: React.FC = () => {
   const [password, setPassword] = useState<string>('');
 
   useEffect(() => {
-    const fetchSession = async (): Promise<void> => {
-      try {
-        const { data: { session } } = await client.auth.getSession();
-        dispatch(session ? loginSuccess({ user: session.user }) : logoutSuccess());
-      } catch (error: any) {
-        console.error('Error al obtener la sesión:', error.message);
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(loginSuccess({ user }));
+      } else {
+        dispatch(logoutSuccess());
       }
-    };
-
-    const onAuthStateChange = (_event: any, session: any): void => {
-      dispatch(session ? loginSuccess({ user: session.user }) : logoutSuccess());
-    };
-
-    fetchSession();
-
-    const { data: { subscription } } = client.auth.onAuthStateChange(onAuthStateChange);
-
-    return () => {
-      subscription.unsubscribe();
-    };
+    });
   }, [dispatch]);
 
   const handleSubmit = async (e: FormEvent<HTMLButtonElement>): Promise<void> => {
     e.preventDefault();
+    const auth = getAuth();
     try {
-      const { data, error } = await client.auth.signInWithPassword({
-        email,
-        password,
-      });
-  
-      if (error) {
-        console.error('Error al iniciar sesión:', error.message);
-        alert('No se ha podido iniciar sesión. Registrate o confirma tu cuenta en tu email.')
-      } else if (data) {
-        const { user } = data;
-        console.log('Inicio de sesión exitoso:', user);
-        dispatch(loginSuccess({ user }));
-      }
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      // La cookie HTTP-only debería ser establecida por el backend en una ruta segura
+      dispatch(loginSuccess({ user: userCredential.user }));
     } catch (error: any) {
-      console.error('Error inesperado:', error.message);
+      console.error('Error al iniciar sesión:', error.message);
     }
   };
 
-
   const handleLogoutClick = async (): Promise<void> => {
+    const auth = getAuth();
     try {
-      await client.auth.signOut();
+      await signOut(auth);
       dispatch(logoutSuccess());
       console.log('Usuario desconectado');
     } catch (error: any) {
@@ -71,35 +49,52 @@ const Signup: React.FC = () => {
   return (
     <>
       <Header isAuthenticated={isAuthenticated} />
-      <div className='flex flex-col gap-2 font-inter justify-center mt-20 items-center mx-auto'>
-        {isAuthenticated ? (
-          <>
-            <p>Bienvenido. Has iniciado sesión.</p>
-            <button onClick={handleLogoutClick}>Cerrar sesión</button>
-          </>
-        ) : (
-          <>
-            <img src={user} width={30} alt='' />
-            <p className='font-semibold text-sm'>Email:</p>
-            <input
-              type='email'
-              className='input input-bordered w-full max-w-xs'
-              onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-            />
-            <p className='font-semibold text-sm'>Password:</p>
-            <input
-              type='password'
-              className='input input-bordered w-full max-w-xs'
-              onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-            />
-            <button
-              className='btn btn-xs btn-outline btn-neutral mt-3'
-              onClick={handleSubmit}
-            >
-              Sign In
-            </button>
-          </>
-        )}
+      <div className='flex flex-col items-center justify-center h-screen bg-gray-100'>
+        <div className='w-full max-w-xs p-8 bg-white rounded-lg shadow-md'>
+          {isAuthenticated ? (
+            <>
+              <h1 className='text-2xl font-inter font-semibold mb-4'>Welcome</h1>
+              <button
+                className='btn btn-primary w-full mt-4'
+                onClick={handleLogoutClick}
+              >
+                Log out
+              </button>
+            </>
+          ) : (
+            <>
+              <h1 className='text-2xl font-inter font-semibold mb-4'>Log in</h1>
+              <div className='mb-4'>
+                <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='email'>
+                  Email
+                </label>
+                <input
+                  id='email'
+                  type='email'
+                  className='input input-bordered w-full'
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className='mb-6'>
+                <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='password'>
+                  Password
+                </label>
+                <input
+                  id='password'
+                  type='password'
+                  className='input input-bordered w-full'
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                />
+              </div>
+              <button
+                className='btn btn-primary w-full'
+                onClick={handleSubmit}
+              >
+                Log in
+              </button>
+            </>
+          )}
+        </div>
       </div>
       <Footer />
     </>

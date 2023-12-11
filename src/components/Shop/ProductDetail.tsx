@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store/store';
+import { addItemToCart } from '../../store/Slices/sliceCart';
+import { Toaster, toast } from 'sonner';
 
 interface Product {
+    id: string; // Asegúrate de incluir la propiedad 'id'
     name: string;
     artist: string;
     price: number;
@@ -13,6 +18,8 @@ interface Product {
 const ProductDetail: React.FC = () => {
     const { productId } = useParams<{ productId: any }>();
     const [product, setProduct] = useState<Product | null>(null);
+    const isAuthenticated: boolean = useSelector((state: RootState) => state.auth.isAuthenticated);
+    const dispatch = useDispatch();
 
     useEffect(() => {
 
@@ -28,9 +35,17 @@ const ProductDetail: React.FC = () => {
             });
     }, [productId]);
 
+    const addToCart = (product: Product) => {
+        dispatch(addItemToCart(product));
+        toast.success('Product added to cart', {
+            duration: 2000,
+        })
+        console.log("Adding to cart:", { id: product.id });
+    };
+
     return (
         <>
-            <Header />
+            <Header isAuthenticated={isAuthenticated} />
             <div className='mb-20'>
                 <div className="hero mt-20 bg-base-100 font-inter w-1/2 m-auto">
                     <div className="hero-content flex-col lg:flex-row space-x-6">
@@ -44,12 +59,22 @@ const ProductDetail: React.FC = () => {
                                     <p className='font-regular text-md text-secondary'>By {product.artist}</p>
                                     <p className='text-start font-light'>Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                                     <p className="py-6 text-start font-semibold">{product.price}€</p>
-                                    <button className="btn btn-primary">Add to cart</button>
+                                    <button className="btn btn-primary" onClick={(event) => {
+                                    event.preventDefault();
+                                    addToCart(product);
+                                }}>Add to cart</button>
                                 </>
                             )}
                         </div>
                     </div>
                 </div>
+                <Toaster toastOptions={{
+                    style: {
+                        background: 'black',
+                        color: "white"
+                    },
+                    className: 'my-toast',
+                }} />
             </div>
             <Footer />
         </>
@@ -57,3 +82,9 @@ const ProductDetail: React.FC = () => {
 };
 
 export default ProductDetail;
+
+
+
+
+
+
