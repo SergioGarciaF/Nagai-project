@@ -77,7 +77,7 @@ const Cart = () => {
             <div className='flex justify-center items-center mb-20'>
                 {cartItems.length === 0 ? (
                     <div>
-                        <div className='font-inter mt-20 text-lg m-auto min-h-screen'>Your cart is empty.</div>
+                        <div className='font-inter mt-20 text-lg m-auto h-screen'>Your cart is empty.</div>
                     </div>
                 ) : (
                     <div className='flex justify-center space-x-6'>

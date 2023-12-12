@@ -44,8 +44,6 @@ const Header: React.FC<HeaderProps> = () => {
               <Link to='/shop'><li><a className="cursor-default font-inter font-light">Shop</a></li></Link>
               <Link to='/aboutus'><li><a className="cursor-default font-inter font-light">About us</a></li></Link>
               <Link to='/contact'><li><a className="cursor-default font-inter font-light">Contact</a></li> </Link>
-              <Link to='/login'><li><a className="cursor-default font-inter font-light">Login</a></li></Link>
-              <Link to='/register'><li><a className="cursor-default font-inter font-light">Sign up</a></li></Link>
             </ul>
           </nav>
 

@@ -5,7 +5,8 @@ import Mateo from '../../assets/Artists/Mateo García.jpg'
 const Hero = () => {
     return (
         <>
-            <h1 className='font-inter font-bold text-2xl m-auto mt-8 mb-8'>MEET OUR ARTISTS</h1>
+        <div className='min-h-screen'>
+        <h1 className='font-inter font-bold text-2xl m-auto mt-8 mb-8'>MEET OUR ARTISTS</h1>
             <hr className="border-b-2 border-b-neutral w-full mb-4"/>
             <div className="hero bg-base-100 w-1/2 m-auto">
                 <div className="hero-content flex-col lg:flex-row">
@@ -40,6 +41,7 @@ const Hero = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </>
     )
 }
