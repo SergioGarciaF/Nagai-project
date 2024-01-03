@@ -11,7 +11,7 @@ const AboutUs = () => {
     return (
         <div>
             <Header isAuthenticated={isAuthenticated}/>
-            <div className="hero mt-10 bg-base-100">
+            <div className="hero mt-10 bg-base-100 h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <img src={about} className="max-w-md rounded-lg shadow-2xl" />
                     <div className="text-start">

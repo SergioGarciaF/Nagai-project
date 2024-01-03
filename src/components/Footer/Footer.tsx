@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <>
             <div className='w-full bottom-0'>
-                <hr className="border-b-1 border-b-neutral mt-20" />
+                <hr className="border-b-1 border-b-neutral" />
                 <footer className="footer items-center p-4 bg-base-100 font-inter">
                     <aside className="items-center grid-flow-col">
                         <img src={icon} alt="" />

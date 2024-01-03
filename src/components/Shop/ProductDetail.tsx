@@ -55,11 +55,11 @@ const ProductDetail: React.FC = () => {
                         <div className='flex flex-col items-start font-inter'>
                             {product && (
                                 <>
-                                    <h1 className="text-2xl font-bold">{product.name}</h1>
-                                    <p className='font-regular text-md text-secondary'>By {product.artist}</p>
-                                    <p className='text-start font-light'>Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                                    <p className="py-6 text-start font-semibold">{product.price}€</p>
-                                    <button className="btn btn-primary" onClick={(event) => {
+                                    <h1 className="text-5xl font-bold">{product.name}</h1>
+                                    <p className='font-regular text-xl text-secondary'>By {product.artist}</p>
+                                    <p className='text-start font-light text-2xl mt-3'>Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                                    <p className="py-6 text-start font-semibold text-4xl">{product.price}€</p>
+                                    <button className="btn btn-primary transition-transform transform hover:scale-105" onClick={(event) => {
                                     event.preventDefault();
                                     addToCart(product);
                                 }}>Add to cart</button>
