@@ -57,10 +57,10 @@ const Shop: React.FC = () => {
         <>
             <Header isAuthenticated={isAuthenticated}/>
             <h2 className="font-inter font-semibold text-lg mt-20 mb-8">Shop</h2>
-            <div className="flex justify-center items-center w-1/2 mx-auto">
+            <div className="flex justify-center items-center w-full mx-auto">
                 <div className="flex flex-wrap justify-center gap-20 mt-3 mb-20 p-10">
                     {products.map((product, index) => (
-                        <div key={index + 1}>
+                        <div key={index + 1} className="transition-transform transform hover:scale-110">
                             <Link to={`/product-detail/${index}`}>
                                 <img className='shadow-xl transition-opacity duration-300 hover:opacity-70' src={product.img} width={200} height={100} alt="" />
                             </Link>
