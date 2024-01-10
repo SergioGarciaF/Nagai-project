@@ -12,10 +12,10 @@ import video from '../../../assets/Videos/fondo-registro.mp4';
 const Register = () => {
   const dispatch = useDispatch();
   const isAuthenticated: boolean = useSelector((state: RootState) => state.auth.isAuthenticated);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [showContent, setShowContent] = useState(false);
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [showContent, setShowContent] = useState<boolean>(false);
 
   const validatePassword = (password: string) => {
     if (password.length < 4) {
@@ -105,10 +105,10 @@ const Register = () => {
               </>
             ) : (
               <>
-                <h1 className='text-2xl font-inter font-semibold mb-4'>Sign up</h1>
-                <form onSubmit={handleSubmit} className='space-y-4'>
+                <h1 className='text-4xl font-inter mb-8'>Sign up</h1>
+                <form onSubmit={handleSubmit} className='space-y-4 text-2xl'>
                   <div>
-                    <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='email'>
+                    <label className='block text-gray-700 font-bold mb-2 ' htmlFor='email'>
                       Email
                     </label>
                     <input
@@ -116,18 +116,18 @@ const Register = () => {
                       type='email'
                       name='email'
                       placeholder='youremail@site.com'
-                      className='border-b border-gray-500 focus:outline-none focus:border-black w-full py-2'
+                      className='border-b border-gray-500 bg-gray-100 focus:outline-none focus:border-black w-full py-2'
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <div>
-                    <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='password'>
+                    <label className='block text-gray-700 font-bold mb-2' htmlFor='password'>
                       Password
                     </label>
                     <input
                       id='password'
                       type='password'
-                      className='input input-bordered w-full'
+                      className='border-b border-gray-500 bg-gray-100 focus:outline-none focus:border-black w-full py-2'
                       onChange={(e) => {
                         setPassword(e.target.value);
                         validatePassword(e.target.value);
@@ -135,17 +135,17 @@ const Register = () => {
                     />
                   </div>
                   <div>
-                    <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='confirmPassword'>
+                    <label className='block text-gray-700 font-bold mb-2' htmlFor='confirmPassword'>
                       Repeat Password
                     </label>
                     <input
                       id='confirmPassword'
                       type='password'
-                      className='input input-bordered w-full'
+                      className='border-b border-gray-500 bg-gray-100 focus:outline-none focus:border-black w-full py-2'
                       onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                   </div>
-                  <button className='btn btn-primary w-full'>
+                  <button className='btn text-xl font-bold btn-primary w-full'>
                     Sign up
                   </button>
                 </form>

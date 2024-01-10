@@ -6,11 +6,15 @@ import Header from '../../Header/Header';
 import Footer from '../../Footer/Footer';
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 
+import videoLogin from '../../../assets/Videos/videoLogin1.mp4'
+
 const Signup: React.FC = () => {
   const dispatch = useDispatch();
   const isAuthenticated: boolean = useSelector((state: RootState) => state.auth.isAuthenticated);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [showContent, setShowContent] = useState<boolean>(false);
+
 
   useEffect(() => {
     const auth = getAuth();
@@ -24,6 +28,14 @@ const Signup: React.FC = () => {
       }
     });
   }, [dispatch]);
+
+  useEffect(() => {
+    const simulateLoading = setTimeout(() => {
+      setShowContent(true);
+    }, 1000);
+
+    return () => clearTimeout(simulateLoading);
+  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLButtonElement>): Promise<void> => {
     e.preventDefault();
@@ -59,53 +71,67 @@ const Signup: React.FC = () => {
   return (
     <>
       <Header isAuthenticated={isAuthenticated} />
-      <div className='flex flex-col items-center justify-center h-screen bg-gray-100'>
-        <div className='w-full max-w-xs p-8 bg-white rounded-lg shadow-md'>
-          {isAuthenticated ? (
-            <>
-              <h1 className='text-2xl font-inter font-semibold mb-4'>Welcome</h1>
-              <button
-                className='btn btn-primary w-full mt-4'
-                onClick={handleLogoutClick}
-              >
-                Log out
-              </button>
-            </>
-          ) : (
-            <>
-              <h1 className='text-2xl font-inter font-semibold mb-4'>Log in</h1>
-              <div className='mb-4'>
-                <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='email'>
-                  Email
-                </label>
-                <input
-                  id='email'
-                  type='email'
-                  className='input input-bordered w-full'
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className='mb-6'>
-                <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='password'>
-                  Password
-                </label>
-                <input
-                  id='password'
-                  type='password'
-                  className='input input-bordered w-full'
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-                />
-              </div>
-              <button
-                className='btn btn-primary w-full'
-                onClick={handleSubmit}
-              >
-                Log in
-              </button>
-            </>
-          )}
+      <div className='h-screen flex'>
+        <div className='w-1/2 relative'>
+          <video autoPlay muted loop className='w-full h-full object-cover absolute top-0 left-0 z-[-1]'>
+            <source src={videoLogin} type="video/mp4" />
+            Tu navegador no soporta el elemento de video.
+          </video>
+          <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-opacity duration-1000 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
+            <h1 className='text-white text-4xl font-inter font-semibold mb-10'>
+              Log in
+            </h1>
+          </div>
+        </div>
+        <div className='flex flex-col items-center justify-center h-screen mx-auto w-1/2 bg-gray-100'>
+          <div className='w-full max-w-xs p-8  rounded-lg '>
+            {isAuthenticated ? (
+              <>
+                <h1 className='text-2xl font-inter font-semibold mb-4'>Welcome</h1>
+                <button
+                  className='btn btn-primary w-full mt-4'
+                  onClick={handleLogoutClick}
+                >
+                  Log out
+                </button>
+              </>
+            ) : (
+              <>
+                <h1 className='text-4xl font-inter mb-8'>Log in</h1>
+                <div className='mb-4 text-2xl'>
+                  <label className='block text-gray-700 font-bold mb-2' htmlFor='email'>
+                    Email
+                  </label>
+                  <input
+                    id='email'
+                    type='email'
+                    className='border-b border-gray-500 bg-gray-100 focus:outline-none focus:border-black w-full py-2'
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                  />
+                </div>
+                <div className='mb-6 text-2xl'>
+                  <label className='block text-gray-700 font-bold mb-2' htmlFor='password'>
+                    Password
+                  </label>
+                  <input
+                    id='password'
+                    type='password'
+                    className='border-b border-gray-500 bg-gray-100 focus:outline-none focus:border-black w-full py-2'
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                  />
+                </div>
+                <button
+                  className='btn btn-primary w-full text-xl'
+                  onClick={handleSubmit}
+                >
+                  Log in
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
+
       <Footer />
     </>
   );
