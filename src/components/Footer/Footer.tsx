@@ -4,10 +4,10 @@ import icon from '../../assets/icons/Nagai icon.png'
 const Footer = () => {
     return (
         <>
-            <div className='w-full bottom-0'>
-                <hr className="border-b-1 border-b-neutral" />
-                <footer className="footer items-center p-4 bg-base-100 font-inter">
-                    <aside className="items-center grid-flow-col">
+            <div className='flex flex-col'>
+            <hr className="border-b-1 border-b-neutral" />
+                <footer className="footer flex justify-between items-center bg-base-100 font-inter">
+                    <aside className="flex justify-center items-center">
                         <img src={icon} alt="" />
                         <p>Copyright © 2023 - All rights reserved</p>
                     </aside>

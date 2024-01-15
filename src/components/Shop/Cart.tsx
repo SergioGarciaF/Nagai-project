@@ -74,7 +74,7 @@ const Cart = () => {
     return (
         <>
             <Header isAuthenticated={isAuthenticated} />
-            <div className='flex justify-center items-center mb-20'>
+            <div className='flex justify-center items-center mb-20 h-screen'>
                 {cartItems.length === 0 ? (
                     <div>
                         <div className='font-inter mt-20 text-lg m-auto h-screen'>Your cart is empty.</div>
