@@ -4,7 +4,7 @@ import icon from '../../assets/icons/Nagai icon.png'
 const Footer = () => {
     return (
         <>
-            <div className='flex flex-col'>
+            <div className='hidden lg:flex lg:flex-col'>
             <hr className="border-b-1 border-b-neutral" />
                 <footer className="footer flex justify-between items-center bg-base-100 font-inter">
                     <aside className="flex justify-center items-center">
