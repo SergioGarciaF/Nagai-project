@@ -5,7 +5,7 @@ import Mateo from '../../assets/Artists/Mateo García.jpg'
 const Hero = () => {
     return (
         <>
-            <div className='h-full'>
+            <div className='h-full font-inter'>
                 <h1 className='font-inter font-bold text-4xl m-auto mt-8 mb-8'>MEET OUR ARTISTS</h1>
                 <hr className="border-b-2 border-b-neutral w-full mb-4" />
                 <div className="hero bg-base-100 w-full m-auto">
@@ -39,7 +39,7 @@ const Hero = () => {
                         <div className='text-start p-4'>
                             <h1 className="text-5xl font-inter font-bold">Mateo García</h1>
                             <p className='text-m text-secondary'>Collage art</p>
-                            <p className="py-6 text-xl font-thin">Mateo García, born in 1985 in Medellín, hails from a family of artists. He embarked on his professional journey at the age of 16, specializing in collage. With an unpretentious and street-inspired style, he has captivated notable figures such as Obama and Lenny Kravitz, who acquire his works. His unique creativity and avant-garde approach position him as a prominent figure in the contemporary art world. Mateo's global acclaim is heightened by collaborations with major brands, cementing his status as an influential tastemaker.
+                            <p className="py-6 text-xl ">Mateo García, born in 1985 in Medellín, hails from a family of artists. He embarked on his professional journey at the age of 16, specializing in collage. With an unpretentious and street-inspired style, he has captivated notable figures such as Obama and Lenny Kravitz, who acquire his works. His unique creativity and avant-garde approach position him as a prominent figure in the contemporary art world. Mateo's global acclaim is heightened by collaborations with major brands, cementing his status as an influential tastemaker.
                             </p>
                         </div>
                     </div>

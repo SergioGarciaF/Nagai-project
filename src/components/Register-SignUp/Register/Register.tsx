@@ -90,7 +90,7 @@ const Register = () => {
     <>
       <Header isAuthenticated={isAuthenticated} />
       <div className='flex min-h-screen'>
-        <div className='w-1/2 relative'>
+        <div className='hidden lg:w-1/2 relative'>
           <video autoPlay muted loop className='w-full h-full object-cover absolute top-0 left-0 z-[-1]'>
             <source src={video} type="video/mp4" />
             Tu navegador no soporta el elemento de video.
@@ -104,11 +104,11 @@ const Register = () => {
             </p>
           </div>
         </div>
-        <div className='flex flex-col w-1/2 items-center justify-center bg-gray-100'>
+        <div className='flex flex-col w-full lg:w-1/2 items-center justify-center mt-20 lg:bg-gray-100'>
           <div className='w-full max-w-xs p-8'>
             {isAuthenticated ? (
               <>
-                <h1 className='text-2xl font-inter font-semibold mb-4'>Welcome to our family!</h1>
+                <h1 className='text-6xl lg:text-4xl font-inter font-semibold mb-4'>Welcome to our family!</h1>
                 <button
                   className='btn btn-primary w-full mt-4'
                   onClick={handleLogoutClick}
@@ -118,11 +118,10 @@ const Register = () => {
               </>
             ) : (
               <>
-                <h1 className='text-4xl font-inter mb-8'>Sign up</h1>
                 <form onSubmit={handleSubmit} className={`space-y-4 text-2xl transition-all ${animate ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform -translate-x-full'
                   }`}>
                   <div>
-                    <label className='block text-gray-700 font-bold mb-2 ' htmlFor='email'>
+                    <label className='block text-gray-700 font-bold mb-2 text-6xl lg:text-4xl' htmlFor='email'>
                       Email
                     </label>
                     <input
@@ -130,18 +129,18 @@ const Register = () => {
                       type='email'
                       name='email'
                       placeholder='youremail@site.com'
-                      className='border-b border-gray-500 bg-gray-100 focus:outline-none focus:border-black w-full py-2'
+                      className='border-b border-gray-500 lg:bg-gray-100 focus:outline-none focus:border-black w-full py-2 mb-20'
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <div>
-                    <label className='block text-gray-700 font-bold mb-2' htmlFor='password'>
+                    <label className='block text-gray-700 font-bold mb-2 text-6xl lg:text-4xl' htmlFor='password'>
                       Password
                     </label>
                     <input
                       id='password'
                       type='password'
-                      className='border-b border-gray-500 bg-gray-100 focus:outline-none focus:border-black w-full py-2'
+                      className='border-b border-gray-500 lg:bg-gray-100 focus:outline-none focus:border-black w-full py-2 mb-20'
                       onChange={(e) => {
                         setPassword(e.target.value);
                         validatePassword(e.target.value);
@@ -149,13 +148,13 @@ const Register = () => {
                     />
                   </div>
                   <div>
-                    <label className='block text-gray-700 font-bold mb-2' htmlFor='confirmPassword'>
+                    <label className='block text-gray-700 font-bold mb-2 text-6xl lg:text-4xl' htmlFor='confirmPassword'>
                       Repeat Password
                     </label>
                     <input
                       id='confirmPassword'
                       type='password'
-                      className='border-b border-gray-500 bg-gray-100 focus:outline-none focus:border-black w-full py-2'
+                      className='border-b border-gray-500 lg:bg-gray-100 focus:outline-none focus:border-black w-full py-2 mb-20'
                       onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                   </div>

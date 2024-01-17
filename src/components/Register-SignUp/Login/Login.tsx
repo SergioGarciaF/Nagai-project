@@ -106,7 +106,7 @@ const Signup: React.FC = () => {
               <>
                 <div className={`transition-all ${animate ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform -translate-x-full'
                   }`}>
-                  <div className='mb-4 text-6xl'>
+                  <div className='mb-4 text-6xl lg:text-4xl'>
                     <label className='block text-gray-700 font-bold mb-2' htmlFor='email'>
                       Email
                     </label>
@@ -117,7 +117,7 @@ const Signup: React.FC = () => {
                       onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                     />
                   </div>
-                  <div className='mb-6 text-6xl '>
+                  <div className='mb-6 text-6xl lg:text-4xl'>
                     <label className='block text-gray-700 font-bold mb-2' htmlFor='password'>
                       Password
                     </label>
