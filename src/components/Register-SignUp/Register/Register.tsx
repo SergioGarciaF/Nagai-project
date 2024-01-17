@@ -90,7 +90,7 @@ const Register = () => {
     <>
       <Header isAuthenticated={isAuthenticated} />
       <div className='flex min-h-screen'>
-        <div className='hidden lg:w-1/2 relative'>
+        <div className='relative w-1/2 h-screen hidden lg:block'>
           <video autoPlay muted loop className='w-full h-full object-cover absolute top-0 left-0 z-[-1]'>
             <source src={video} type="video/mp4" />
             Tu navegador no soporta el elemento de video.
