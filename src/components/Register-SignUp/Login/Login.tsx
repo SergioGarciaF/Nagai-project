@@ -18,7 +18,7 @@ const Signup: React.FC = () => {
 
   useEffect(() => {
     const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, (user) => { 
       if (user) {
         localStorage.setItem('user', JSON.stringify(user));
         dispatch(loginSuccess({ user }));
