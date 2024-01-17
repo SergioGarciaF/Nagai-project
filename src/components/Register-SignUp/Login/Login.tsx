@@ -14,6 +14,7 @@ const Signup: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [showContent, setShowContent] = useState<boolean>(false);
+  const [animate, setAnimate] = useState<boolean>(false);
 
 
   useEffect(() => {
@@ -28,6 +29,13 @@ const Signup: React.FC = () => {
       }
     });
   }, [dispatch]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setAnimate(true);
+    }, 700); 
+    return () => clearTimeout(timeout);
+  }, []);
 
   useEffect(() => {
     const simulateLoading = setTimeout(() => {
@@ -71,8 +79,8 @@ const Signup: React.FC = () => {
   return (
     <>
       <Header isAuthenticated={isAuthenticated} />
-      <div className='h-screen flex'>
-        <div className='w-1/2 relative'>
+      <div className='min-h-screen flex'>
+        <div className='relative w-1/2 h-screen hidden lg:block'>
           <video autoPlay muted loop className='w-full h-full object-cover absolute top-0 left-0 z-[-1]'>
             <source src={videoLogin} type="video/mp4" />
             Tu navegador no soporta el elemento de video.
@@ -83,8 +91,8 @@ const Signup: React.FC = () => {
             </h1>
           </div>
         </div>
-        <div className='flex flex-col items-center justify-center h-screen mx-auto w-1/2 bg-gray-100'>
-          <div className='w-full max-w-xs p-8  rounded-lg '>
+        <div className='flex flex-col items-center justify-center min-h-screen mx-auto w-full lg:w-1/2 lg:bg-gray-100'>
+          <div className='w-full max-w-xs p-8 rounded-lg '>
             {isAuthenticated ? (
               <>
                 <h1 className='text-2xl font-inter font-semibold mb-4'>Welcome</h1>
@@ -97,42 +105,45 @@ const Signup: React.FC = () => {
               </>
             ) : (
               <>
-                <h1 className='text-4xl font-inter mb-8'>Log in</h1>
-                <div className='mb-4 text-2xl'>
-                  <label className='block text-gray-700 font-bold mb-2' htmlFor='email'>
-                    Email
-                  </label>
-                  <input
-                    id='email'
-                    type='email'
-                    className='border-b border-gray-500 bg-gray-100 focus:outline-none focus:border-black w-full py-2'
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-                  />
+                <div className={`transition-all ${animate ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform -translate-x-full'
+                  }`}>
+                  <div className='mb-4 text-4xl'>
+                    <label className='block text-gray-700 font-bold mb-2' htmlFor='email'>
+                      Email
+                    </label>
+                    <input
+                      id='email'
+                      type='email'
+                      className='border-b border-gray-500 lg:bg-gray-100 focus:outline-none focus:border-black w-full py-2'
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                    />
+                  </div>
+                  <div className='mb-6 text-4xl'>
+                    <label className='block text-gray-700 font-bold mb-2' htmlFor='password'>
+                      Password
+                    </label>
+                    <input
+                      id='password'
+                      type='password'
+                      className='border-b border-gray-500 lg:bg-gray-100 focus:outline-none focus:border-black w-full py-2'
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                    />
+                  </div>
+                  <button
+                    className='btn btn-primary w-full text-4xl lg:text-2xl'
+                    onClick={handleSubmit}
+                  >
+                    Log in
+                  </button>
                 </div>
-                <div className='mb-6 text-2xl'>
-                  <label className='block text-gray-700 font-bold mb-2' htmlFor='password'>
-                    Password
-                  </label>
-                  <input
-                    id='password'
-                    type='password'
-                    className='border-b border-gray-500 bg-gray-100 focus:outline-none focus:border-black w-full py-2'
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-                  />
-                </div>
-                <button
-                  className='btn btn-primary w-full text-xl'
-                  onClick={handleSubmit}
-                >
-                  Log in
-                </button>
+
               </>
             )}
           </div>
         </div>
       </div>
 
-      <Footer />
+      
     </>
   );
 };

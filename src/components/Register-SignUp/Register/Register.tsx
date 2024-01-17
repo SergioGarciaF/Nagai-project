@@ -16,6 +16,8 @@ const Register = () => {
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [showContent, setShowContent] = useState<boolean>(false);
+  const [animate, setAnimate] = useState<boolean>(false);
+
 
   const validatePassword = (password: string) => {
     if (password.length < 4) {
@@ -54,6 +56,17 @@ const Register = () => {
       console.error('Error al cerrar sesión:', error.message);
     }
   };
+
+  useEffect(() => {
+    
+    const timeout = setTimeout(() => {
+      setAnimate(true);
+    }, 700);
+
+    
+    return () => clearTimeout(timeout);
+  }, []);
+
 
   useEffect(() => {
     const simulateLoading = setTimeout(() => {
@@ -106,7 +119,8 @@ const Register = () => {
             ) : (
               <>
                 <h1 className='text-4xl font-inter mb-8'>Sign up</h1>
-                <form onSubmit={handleSubmit} className='space-y-4 text-2xl'>
+                <form onSubmit={handleSubmit} className={`space-y-4 text-2xl transition-all ${animate ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform -translate-x-full'
+                  }`}>
                   <div>
                     <label className='block text-gray-700 font-bold mb-2 ' htmlFor='email'>
                       Email
