@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess, logoutSuccess } from '../../../store/Slices/authSlice'
 import { RootState } from '../../../store/store';
 import Header from '../../Header/Header';
-import Footer from '../../Footer/Footer';
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 
 import videoLogin from '../../../assets/Videos/videoLogin1.mp4'
@@ -136,6 +135,7 @@ const Signup: React.FC = () => {
                     Log in
                   </button>
                 </div>
+                
 
               </>
             )}
