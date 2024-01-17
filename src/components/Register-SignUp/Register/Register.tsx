@@ -104,7 +104,7 @@ const Register = () => {
             </p>
           </div>
         </div>
-        <div className='flex flex-col w-full lg:w-1/2 items-center justify-center mt-20 lg:bg-gray-100'>
+        <div className='flex flex-col w-full lg:w-1/2 items-center justify-center lg:bg-gray-100'>
           <div className='w-full max-w-xs p-8'>
             {isAuthenticated ? (
               <>
@@ -121,7 +121,7 @@ const Register = () => {
                 <form onSubmit={handleSubmit} className={`space-y-4 text-2xl transition-all ${animate ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform -translate-x-full'
                   }`}>
                   <div>
-                    <label className='block text-gray-700 font-bold mb-2 text-6xl lg:text-4xl' htmlFor='email'>
+                    <label className='block text-gray-700 font-bold mb-2 mt-20 text-6xl lg:text-4xl' htmlFor='email'>
                       Email
                     </label>
                     <input
