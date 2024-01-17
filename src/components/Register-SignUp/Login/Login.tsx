@@ -106,30 +106,30 @@ const Signup: React.FC = () => {
               <>
                 <div className={`transition-all ${animate ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform -translate-x-full'
                   }`}>
-                  <div className='mb-4 text-4xl'>
+                  <div className='mb-4 text-6xl'>
                     <label className='block text-gray-700 font-bold mb-2' htmlFor='email'>
                       Email
                     </label>
                     <input
                       id='email'
                       type='email'
-                      className='border-b border-gray-500 lg:bg-gray-100 focus:outline-none focus:border-black w-full py-2'
+                      className='border-b border-gray-500 lg:bg-gray-100 focus:outline-none focus:border-black w-full py-2 mb-20'
                       onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                     />
                   </div>
-                  <div className='mb-6 text-4xl'>
+                  <div className='mb-6 text-6xl '>
                     <label className='block text-gray-700 font-bold mb-2' htmlFor='password'>
                       Password
                     </label>
                     <input
                       id='password'
                       type='password'
-                      className='border-b border-gray-500 lg:bg-gray-100 focus:outline-none focus:border-black w-full py-2'
+                      className='border-b border-gray-500 lg:bg-gray-100 focus:outline-none focus:border-black w-full py-2 mb-20'
                       onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                     />
                   </div>
                   <button
-                    className='btn btn-primary w-full text-4xl lg:text-2xl'
+                    className='btn btn-lg btn-primary w-full text-4xl'
                     onClick={handleSubmit}
                   >
                     Log in
