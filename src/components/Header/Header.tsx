@@ -50,19 +50,19 @@ const Header: React.FC<HeaderProps> = () => {
 
           <Link to='/'><a className="cursor-default font-inter font-bold text-4xl ms-10">Nagai.</a></Link>
         </div>
-        <nav className="navbar-center text-2xl hidden lg:flex space-x-10 list-none">
+        <nav className="navbar-center text-xl hidden lg:flex space-x-10 list-none">
           <Link to='/shop'><li><a className="cursor-default font-inter font-light">Shop</a></li></Link>
           <Link to='/aboutus'><li><a className="cursor-default font-inter font-light">About us</a></li></Link>
           <Link to='/contact'><li><a className="cursor-default font-inter font-light">Contact</a></li> </Link>
         </nav>
         {isAuthenticated ? (
-          <nav className="navbar-end  space-x-6 me-6 text-2xl list-none">
+          <nav className="navbar-end  space-x-6 me-6 text-xl list-none">
             <Link to='/login'><li><a className="cursor-default font-inter font-light">{user.email}</a></li></Link>
             <Link to='/register'><li onClick={handleLogoutClick}><a className="cursor-default font-inter font-light">Logout</a></li></Link>
             <Link to='/cart'><li><a className="cursor-default font-inter font-light"><img src={cart} alt="cart" width={30} /></a></li></Link>
           </nav>
         ) : (
-          <nav className="navbar-end space-x-6 me-6 text-2xl list-none">
+          <nav className="navbar-end space-x-6 me-6 text-xl list-none">
             <Link to='/login'><li><a className="cursor-default font-inter font-light">Login</a></li></Link>
             <Link to='/register'><li><a className="cursor-default font-inter font-light">Sign up</a></li></Link>
             <Link to='/cart'><li><a className="cursor-default font-inter font-light"><img src={cart} alt="cart" width={35} /></a></li></Link>
