@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { DataSnapshot, get, getDatabase, ref } from "firebase/database";
+import { get, getDatabase, ref as dbRef } from "firebase/database"; // Renombra ref a dbRef
+import { getStorage, ref as storageRef, getDownloadURL } from "firebase/storage"; // Importa getDownloadURL y renombra ref a storageRef
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import {firebaseApp} from '../../firebase/app';
@@ -21,6 +22,7 @@ const Shop: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const dispatch = useDispatch();
     const isAuthenticated: boolean = useSelector((state: RootState) => state.auth.isAuthenticated);
+    const storage = getStorage(firebaseApp); // Inicializa Cloud Storage
 
     useEffect(() => {
         const productIDs: string[] = Array.from({ length: 19 }, (_, index) => (index + 1).toString());
@@ -28,12 +30,20 @@ const Shop: React.FC = () => {
         const fetchData = async () => {
             try {
                 const database = getDatabase(firebaseApp);
-                const productPromises = productIDs.map((id) =>
-                    get(ref(database, `paints/${id}`)).then((snapshot: DataSnapshot) => ({
-                        ...snapshot.val(),
+                const productPromises = productIDs.map(async (id) => {
+                    const snapshot = await get(dbRef(database, `paints/${id}`)); // Usa dbRef
+                    const product = snapshot.val();
+
+                    // Obtiene la URL de descarga de la imagen
+                    const imageRef = storageRef(storage, product.img); // Usa storageRef
+                    const imageUrl = await getDownloadURL(imageRef);
+
+                    return {
+                        ...product,
+                        img: imageUrl,
                         id: snapshot.key,
-                    }))
-                );
+                    };
+                });
 
                 const productData = await Promise.all(productPromises);
                 setProducts(productData as Product[]);
