@@ -6,9 +6,8 @@ const stripe = new Stripe('sk_test_51ImKJBKDjhdegL1lpj7LYGxyj4JyZe4uy7q75bvlpOl4
 const router = Router();
 
 router.post('/create-checkout-session', async (req, res) => {
-  const { cartItems, productQuantities } = req.body;
+  const { cartItems} = req.body;
   const line_items = cartItems.map(item => {
-      const quantity = productQuantities[item.id] || 1; // Utiliza 1 como valor predeterminado si no se especifica la cantidad
       return {
           price_data: {
               currency: 'eur',
@@ -17,16 +16,15 @@ router.post('/create-checkout-session', async (req, res) => {
                   images: [item.img],
               },
               unit_amount: item.price * 100,
-          },
-          quantity: quantity,
+          },   
       };
   });
 
   const session = await stripe.checkout.sessions.create({
       line_items,
       mode: 'payment',
-      success_url: 'https://nagai-project.vercel.app/success',
-      cancel_url: 'https://nagai-project.vercel.app/',
+      success_url: 'http://localhost:3000/success',
+      cancel_url: 'http://localhost:3000/',
   });
 
   return res.json(session);
