@@ -4,115 +4,115 @@
             "name": "Autumn",
             "artist": "Jean Dupont",
             "price": 1978.96,
-            "img": "https://drive.google.com/uc?export=view?&id=1Hd3iU3U9h37VGTxbiXyCAeFj4v_V2gyk"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Autumn.jpeg?alt=media&token=03afc440-c3d6-49a4-ad53-8af6f914ddc4"
         },
         "2": {
             "name": "Chaos",
             "artist": "Jean Dupont",
             "price": 1050,
-            "img": "https://drive.google.com/uc?export=view?&id=1v9oWwPp5AQi-136nHUzJ5jvCEj27kbNX"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Chaos.jpeg?alt=media&token=e8240250-265f-49df-a4ef-140d606f3150"
         },
         "3": {
             "name": "Honey",
             "artist": "Jean Dupont",
             "price": 2500,
-            "img": "https://drive.google.com/uc?export=view?&id=1v-eUn1W8J3CM9aY_YTdLhrDXifcFD9iJ"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Honey.jpeg?alt=media&token=cc29f658-2052-421f-9461-b5826c4649a1"
         },
         "4": {
             "name": "Orange",
             "artist": "Jean Dupont",
             "price": 2500,
-            "img": "https://drive.google.com/uc?export=view?&id=1v2NbF6fn237CKV3tI_qyph5mSD6Ohhai"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Orange.jpeg?alt=media&token=c7152519-b72a-420e-8e58-ca66bf943987"
         },
         "5": {
             "name": "Pink",
             "artist": "Jean Dupont",
             "price": 3500,
-            "img": "https://drive.google.com/uc?export=view?&id=1vIvbynd2SiKffeuV5RZZaQUB1sqQbUq4"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Pink.jpeg?alt=media&token=4f2e0eb5-be1a-4b9b-9c1f-583e98c4a19f"
         },
         "6": {
             "name": "Sky",
             "artist": "Jean Dupont",
             "price": 1999,
-            "img": "https://drive.google.com/uc?export=view?&id=1vHGB1RI-Y_fR1svqtgx3LHLEhl_qn3Ix"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Sky.jpeg?alt=media&token=63e1c86d-4215-451d-9fe6-2665b9f5b8a4"
         },
         "7": {
             "name": "Yogurt",
             "artist": "Jean Dupont",
             "price": 2000,
-            "img": "https://drive.google.com/uc?export=view?&id=1vEzTfCLPBBJNft1QCCeKpdB64h8Y3KQq"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Yogurt.jpeg?alt=media&token=1da239ce-8c4f-47c9-a355-89a7f7dfa7fd"
         },
         "8": {
             "name": "Blood",
             "artist": "Mateo García",
             "price": 3687,
-            "img": "https://drive.google.com/uc?export=view?&id=1vM26nkrLwgJgU3z6djR3F5pnmqo7scBy"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Blood.jpeg?alt=media&token=30f06d7d-6d21-4fd2-a3b4-62a351149d30"
         },
         "9": {
             "name": "Goat",
             "artist": "Mateo García",
             "price": 2988,
-            "img": "https://drive.google.com/uc?export=view?&id=1vSBbGsPzSQ-KBUiiStOVsYfdvmSBLtGJ"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Goat.jpeg?alt=media&token=4d7302a9-7011-4c33-857c-afb93c984565"
         },
         "10": {
             "name": "Idk",
             "artist": "Mateo García",
             "price": 2500,
-            "img": "https://drive.google.com/uc?export=view?&id=1vZLQbxLpxhXd6CPvYcYxnN1pON4YvQ7f"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/IDK.jpeg?alt=media&token=923c783c-d2fa-43f1-9772-49eff7cdb72c"
         },
         "11": {
             "name": "Honey",
             "artist": "Mateo García",
             "price": 2000,
-            "img": "https://drive.google.com/uc?export=view?&id=1vXjjK1DpCDmkDECk-3FoAcBtT9WKqRlt"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Honey.jpeg?alt=media&token=cc29f658-2052-421f-9461-b5826c4649a1"
         },
         "12": {
             "name": "Lady",
             "artist": "Mateo García",
             "price": 1500,
-            "img": "https://drive.google.com/uc?export=view?&id=1vQvgd940FNqHB3izRvV8NhVaI20MBoTV"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Lady.jpeg?alt=media&token=509d6a14-e35b-4879-87e0-007af8caab77"
         },
         "13": {
             "name": "Society",
             "artist": "Mateo García",
             "price": 2888,
-            "img": "https://drive.google.com/uc?export=view?&id=1vQD5NFDeBd_y5VtJi20zxCqxe3krYyAZ"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Society.jpeg?alt=media&token=987d5948-c1c3-4705-85ff-28dd4ccebd44"
         },
         "14": {
             "name": "Flower",
             "artist": "Millie Harrison",
             "price": 1899,
-            "img": "https://drive.google.com/uc?export=view?&id=1w2Q8lyFWkMnFIVBB_t4CSDDqAXEF5rhN"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Flower.jpeg?alt=media&token=b599ffa6-77af-446e-8505-f0df060fa21c"
         },
         "15": {
             "name": "Future",
             "artist": "Millie Harrison",
             "price": 2500,
-            "img": "https://drive.google.com/uc?export=view?&id=1vbyWtBrRuoru-zoJk6FjXA5leHmypK0E"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Future.jpeg?alt=media&token=c35c8637-392a-46d8-a37d-f58f15d59245"
         },
         "16": {
             "name": "Nature",
             "artist": "Millie Harrison",
             "price": 4500,
-            "img": "https://drive.google.com/uc?export=view?&id=1vxILQQJ_eZaRyZQCOx1hdWjrmXqk174Z"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Nature.jpeg?alt=media&token=44ca2db0-c84e-4271-b81e-aa2d8bc78d81"
         },
         "17": {
             "name": "Nigata",
             "artist": "Millie Harrison",
             "price": 5000,
-            "img": "https://drive.google.com/uc?export=view?&id=1vvihYk2rJ7a4eT2k17YqAB-89r-bxJXk"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Nigata.jpeg?alt=media&token=67386d3a-ca7b-4a02-88a6-65f88e477526"
         },
         "18": {
             "name": "Pangea",
             "artist": "Millie Harrison",
             "price": 3500,
-            "img": "https://drive.google.com/uc?export=view?&id=1vfQR0nWqo0wB43YoaZa8Liaj4_YXlayx"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Pangea.jpeg?alt=media&token=7ee283fb-2398-4cb7-949e-57b94daaefdd"
         },
         "19": {
             "name": "Sea",
             "artist": "Millie Harrison",
             "price": 2000,
-            "img": "https://drive.google.com/uc?export=view?&id=1vet8isAPdF7xrDfjsQJFysEUSHICVYv6"
+            "img": "https://firebasestorage.googleapis.com/v0/b/nagai-bab28.appspot.com/o/Sea.jpeg?alt=media&token=2b6e1ac7-fa0e-4545-9099-d3ae2f739afe"
         }
     }
     

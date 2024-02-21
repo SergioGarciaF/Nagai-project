@@ -5,10 +5,11 @@ import { get, getDatabase, ref as dbRef } from "firebase/database"; // Renombra 
 import { getStorage, ref as storageRef, getDownloadURL } from "firebase/storage"; // Importa getDownloadURL y renombra ref a storageRef
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import {firebaseApp} from '../../firebase/app';
+import { firebaseApp } from '../../firebase/app';
 import { addItemToCart } from "../../store/Slices/sliceCart";
 import { RootState } from "../../store/store";
 import { Toaster, toast } from "sonner";
+import LazyLoad from "react-lazy-load";
 
 interface Product {
     name: string;
@@ -65,15 +66,17 @@ const Shop: React.FC = () => {
 
     return (
         <>
-            <Header isAuthenticated={isAuthenticated}/>
+            <Header isAuthenticated={isAuthenticated} />
             <h2 className="font-inter font-semibold text-lg mt-20 mb-8">Shop</h2>
             <div className="flex justify-center items-center w-full mx-auto">
                 <div className="flex flex-col lg:flex-row lg:flex-wrap justify-center gap-20 mt-3 mb-20 p-10">
                     {products.map((product, index) => (
                         <div key={index + 1} className="transition-transform transform hover:scale-110">
-                            <Link to={`/product-detail/${index}`}>
-                                <img className='shadow-xl max-w-xs lg:max-w-xs lg:transition-opacity lg:duration-300 lg:hover:opacity-70' src={product.img} alt="" />
-                            </Link>
+                            <LazyLoad>
+                                <Link to={`/product-detail/${index}`}>
+                                    <img className='shadow-xl max-w-xs lg:max-w-xs lg:transition-opacity lg:duration-300 lg:hover:opacity-70' src={product.img} alt="" />
+                                </Link>
+                            </LazyLoad>
                             <div className="flex justify-between items-start">
                                 <div>
                                     <h3 className='text-start font-inter font-semibold text-sm mt-2'>{product.name}</h3>
