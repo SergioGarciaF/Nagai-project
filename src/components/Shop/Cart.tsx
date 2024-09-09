@@ -31,7 +31,7 @@ const Cart = () => {
         try {
             console.log('Iniciando la solicitud de pago...');
     
-            const response = await fetch('https://nagai-project.vercel.app/create-checkout-session', {
+            const response = await fetch('https://nagai-project2.vercel.app/create-checkout-session', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

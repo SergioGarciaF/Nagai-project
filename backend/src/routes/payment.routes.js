@@ -14,8 +14,8 @@ router.post('/create-checkout-session', async (req, res) => {
   const { cartItems } = req.body;
 
 
-  const success_url = 'https://nagai-project.vercel.app/success';  
-  const cancel_url = 'https://nagai-project.vercel.app/cancel';    
+  const success_url = 'https://nagai-project2.vercel.app/success';  
+  const cancel_url = 'https://nagai-project2.vercel.app/cancel';    
 
   // Mapeo de los items del carrito para crear la sesión de pago en Stripe
   const line_items = cartItems.map(item => {
