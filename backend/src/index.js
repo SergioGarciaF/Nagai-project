@@ -3,12 +3,11 @@ import paymentRoutes from './routes/payment.routes.js';
 import { PORT } from './config.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import helmet from 'helmet';
+
 
 const app = express(); 
 
 app.use(cors());
-app.use(helmet());
 app.use(cookieParser());
 app.use(express.json());
 

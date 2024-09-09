@@ -30,8 +30,7 @@ const Cart = () => {
     const handleCheckout = async () => {
         try {
             console.log('Iniciando la solicitud de pago...');
-
-            // Cambia la URL del backend a tu dominio en producción
+    
             const response = await fetch('https://nagai-project.vercel.app/create-checkout-session', {
                 method: 'POST',
                 headers: {
@@ -39,16 +38,16 @@ const Cart = () => {
                 },
                 body: JSON.stringify({ cartItems }),
             });
-
+    
             console.log('Respuesta recibida:', response);
-
+    
             if (!response.ok) {
                 throw new Error('Error al crear la sesión de pago');
             }
-
+    
             const session = await response.json();
             console.log('Sesión creada:', session);
-
+    
             // Redirigir a la URL de la sesión de Stripe
             window.location.href = session.url; 
         } catch (error) {

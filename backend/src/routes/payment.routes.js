@@ -6,16 +6,16 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Inicializa Stripe con la clave secreta desde el archivo .env
-const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY);
 
 const router = Router();
 
 router.post('/create-checkout-session', async (req, res) => {
   const { cartItems } = req.body;
 
-  // Configura las URLs de éxito y cancelación con el protocolo https://
-  const success_url = 'https://nagai-project.vercel.app/success';  // Reemplaza con tu dominio de producción
-  const cancel_url = 'https://nagai-project.vercel.app/cancel';    // Reemplaza con tu dominio de producción
+
+  const success_url = 'https://nagai-project.vercel.app/success';  
+  const cancel_url = 'https://nagai-project.vercel.app/cancel';    
 
   // Mapeo de los items del carrito para crear la sesión de pago en Stripe
   const line_items = cartItems.map(item => {
