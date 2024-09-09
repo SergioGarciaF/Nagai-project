@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Inicializa Stripe con la clave secreta desde el archivo .env
-const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY);
+const stripe = new Stripe(import.meta.env.VITE_STRIPE_URL);
 
 const router = Router();
 

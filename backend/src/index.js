@@ -7,9 +7,13 @@ import cookieParser from 'cookie-parser';
 
 const app = express(); 
 
+app.use(express.json()); 
+
 const corsOptions = {
-  origin: 'https://nagai-project2-hnbkirf23-sergios-projects-bafd5318.vercel.app',  // Cambia esto a tu URL de frontend
-  methods: 'GET,POST'
+  origin: 'https://nagai-project2.vercel.app',  
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'], 
+  credentials: true  
 };
 
 app.use(cors(corsOptions));
@@ -38,7 +42,7 @@ app.post('/api/set-cookie', (req, res) => {
     }
   });
 
-app.use(paymentRoutes);
+app.use('api', paymentRoutes);
 
 
 app.listen(PORT);
