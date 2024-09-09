@@ -1,4 +1,3 @@
-
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -8,16 +7,22 @@ import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-    const cartItems = useSelector((state: RootState) => state.addToCart.cartArray);
+    interface CartItem {
+        id: string;
+        name: string;
+        price: number;
+        img: string;
+    }
+    const cartItems: CartItem[] = useSelector((state: RootState) => state.addToCart.cartArray);
+
     const isAuthenticated: boolean = useSelector((state: RootState) => state.auth.isAuthenticated);
 
     const dispatch = useDispatch();
 
     const calcTotal = cartItems.reduce((total, item) => {
-        // Verifica si productQuantities[item.id] está definido antes de usarlo
-        // Si no está definido, utiliza 1 como valor predeterminado
         return total + item.price;
     }, 0);
+
     const handleDelete = (productId: string) => {
         dispatch(removeFromCart(productId));
     };
@@ -25,8 +30,9 @@ const Cart = () => {
     const handleCheckout = async () => {
         try {
             console.log('Iniciando la solicitud de pago...');
-            alert('Purchase option coming soon')
-            const response = await fetch('http://localhost:4000/create-checkout-session', {
+
+            // Cambia la URL del backend a tu dominio en producción
+            const response = await fetch('https://nagai-project.vercel.app/create-checkout-session', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,6 +49,7 @@ const Cart = () => {
             const session = await response.json();
             console.log('Sesión creada:', session);
 
+            // Redirigir a la URL de la sesión de Stripe
             window.location.href = session.url; 
         } catch (error) {
             console.error('Error al procesar el pago:', error);
@@ -62,22 +69,21 @@ const Cart = () => {
         <>
             <Header isAuthenticated={isAuthenticated} />
             {cartItems.length === 0 ? (
-                <div className="flex flex-col justify-center items-center mx-auto max-w-3xl p-6 space-y-4 sm:p-10 h-screen dark:bg-gray-900 dark:text-gray-100">
+                <div className="flex flex-col items-center justify-center h-screen max-w-3xl p-6 mx-auto space-y-4 sm:p-10 dark:bg-gray-900 dark:text-gray-100">
                     <h3 className='text-6xl'>Your cart is empty.</h3>
                 </div>
             ) : (
-                <div className="flex flex-col justify-center items-center mx-auto max-w-3xl p-6 space-y-4 sm:p-10 h-screen dark:bg-gray-900 dark:text-gray-100">
+                <div className="flex flex-col items-center justify-center h-screen max-w-3xl p-6 mx-auto space-y-4 sm:p-10 dark:bg-gray-900 dark:text-gray-100">
                     <h2 className="text-xl font-semibold">Your cart</h2>
                     <ul className="flex flex-col divide-y dark:divide-gray-700">
-                        {cartItems.map((item: any, index) => (
-                            <li className="flex flex-col py-6 sm:flex-row sm:justify-between">
-                                <div key={index} className="flex w-full space-x-2 sm:space-x-4">
-                                    <img className="flex-shrink-0 object-cover w-20 h-20 dark:border-transparent rounded outline-none sm:w-32 sm:h-32 dark:bg-gray-500" src={item.img} />
+                        {cartItems.map((item: CartItem, index) => (
+                            <li className="flex flex-col py-6 sm:flex-row sm:justify-between" key={index}>
+                                <div className="flex w-full space-x-2 sm:space-x-4">
+                                    <img className="flex-shrink-0 object-cover w-20 h-20 rounded outline-none dark:border-transparent sm:w-32 sm:h-32 dark:bg-gray-500" src={item.img} />
                                     <div className="flex flex-col justify-between w-full pb-4">
                                         <div className="flex justify-between w-full pb-2 space-x-2">
                                             <div className="space-y-1 text-start">
-                                                <h3 className="text-lg font-semibold leadi sm:pr-8">{item.name}</h3>
-                                                <p className="text-sm dark:text-gray-400">{item.artist}</p>
+                                                <h3 className="text-lg font-semibold leading sm:pr-8">{item.name}</h3>
                                             </div>
                                             <div className="text-right">
                                                 <p className="text-lg font-semibold">{item.price}€</p>
