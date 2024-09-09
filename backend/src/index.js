@@ -7,7 +7,12 @@ import cookieParser from 'cookie-parser';
 
 const app = express(); 
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://nagai-project2-hnbkirf23-sergios-projects-bafd5318.vercel.app',  // Cambia esto a tu URL de frontend
+  methods: 'GET,POST'
+};
+
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
 
